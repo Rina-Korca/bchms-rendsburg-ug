@@ -86,7 +86,7 @@ export function HeroSection() {
           viewBox="0 0 1440 120" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-auto"
+          className="w-full h-auto block translate-y-[1px]"
           preserveAspectRatio="none"
         >
           <path 
