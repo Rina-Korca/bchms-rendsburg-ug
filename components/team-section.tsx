@@ -35,14 +35,14 @@ const team = [
     email: "Status: Abgeschlossen",
   },
   {
-    name: "Dachterrasse Begruenung",
-    role: "Penthouse · Hamburg",
-    image: "/images/WhatsApp Image 2026-01-21 at 12.51.46 (5).jpeg",
-    experience: "2025",
-    specialty: "Leichtsubstrat, Bewasserung, Sichtschutz",
-    quote: "Gruner Rueckzugsort hoch uber der Stadt.",
-    phone: "Flaeche: 120 m²",
-    email: "Status: Abgeschlossen",
+    name: "Winterdienst & Schneeraeumung",
+    role: "Einfahrt & Gehwege · Rendsburg",
+    image: "/images/WhatsApp Image 2026-01-21 at 12.51.46 (1) 1.jpeg",
+    experience: "2024",
+    specialty: "Schneeraeumung, Streuen, Eisbekaempfung",
+    quote: "Sichere Wege und Zufahrten trotz Dauerfrost.",
+    phone: "Flaeche: 1.000 m²",
+    email: "Status: Laufend",
   },
 ]
 

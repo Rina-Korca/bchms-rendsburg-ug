@@ -5,6 +5,7 @@ const features = [
   "Umweltfreundliche Praktiken",
   "Individuelle Gartengestaltung",
   "Ganzjahrige Wartungsplane",
+  "Zuverlassiger Winterdienst und Schneeraeumung",
 ]
 
 export function AboutSection() {

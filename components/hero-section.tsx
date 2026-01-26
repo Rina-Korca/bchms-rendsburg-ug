@@ -32,7 +32,9 @@ export function HeroSection() {
             <p className="text-lg text-white/80 max-w-lg mb-8 leading-relaxed">
               Verwandeln Sie Ihren Aussenbereich in eine atemberaubende Oase. Unser Expertenteam 
               bietet professionelle Garten- und Landschaftsbaudienstleistungen, die Ihre Vision 
-              zum Leben erwecken und wunderschone Garten schaffen, in die Sie gerne nach Hause kommen.
+              zum Leben erwecken und wunderschone Garten schaffen, in die Sie gerne nach Hause kommen. 
+              Und wenn der Winter kommt, sorgen wir mit unserem Winterdienst und der Schneeraeumung dafur, 
+              dass Ihre Flaechen sicher und begehbar bleiben.
             </p>
             
             {/* CTA Buttons */}

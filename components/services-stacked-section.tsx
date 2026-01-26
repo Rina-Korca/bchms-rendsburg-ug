@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Scissors, TreeDeciduous, Flower2, Droplets, Home, Shovel, Snowflake, ChevronLeft, ChevronRight } from "lucide-react"
+import { Scissors, TreeDeciduous, Flower2, Droplets, Home, Shovel, Snowflake, CloudSnow, Wind, ChevronLeft, ChevronRight } from "lucide-react"
 
 const services = [
   {
@@ -78,6 +78,39 @@ export function ServicesStackedSection() {
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
               Von der routinemassigen Pflege bis hin zu kompletten Umgestaltungen bieten wir umfassende Losungen, die auf Ihre individuellen Aussenbedurfnisse zugeschnitten sind. Lassen Sie uns Ihnen helfen, den Garten Ihrer Traume zu schaffen.
             </p>
+
+            <div className="bg-white/80 border border-green-light rounded-2xl shadow-md p-6 md:p-7 mb-8">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-green-pale rounded-xl flex items-center justify-center">
+                  <Snowflake className="w-6 h-6 text-green-medium" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-green-medium uppercase tracking-wide mb-1">
+                    Winterdienst & Schneeraeumung
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Wir sind auch in der kalten Jahreszeit fur Sie da: schnelle Schneeraeumung, praezises Streuen und vorbeugende Eisbekaempfung halten Einfahrten, Gehwege und Parkplatze sicher begehbar.
+                  </p>
+                </div>
+              </div>
+              <div className="grid sm:grid-cols-3 gap-4 mt-6">
+                {[
+                  { icon: Snowflake, title: "Schnelle Raeumung", copy: "Fruehzeitige Schneerunden, damit Ihre Flaechen frei bleiben, wenn Sie sie brauchen." },
+                  { icon: CloudSnow, title: "Praezises Streuen", copy: "Salz- und Splittdienste mit Augenmerk auf Umwelt und Materialschonung." },
+                  { icon: Wind, title: "Eisglatte-Pravention", copy: "Vorausschauende Kontrollen verhindern, dass Glatte Sie ausbremst." },
+                ].map((item, index) => (
+                  <div key={index} className="flex gap-3">
+                    <div className="w-10 h-10 bg-green-pale rounded-lg flex items-center justify-center flex-shrink-0">
+                      <item.icon className="w-5 h-5 text-green-medium" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-green-dark">{item.title}</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{item.copy}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
             
             {/* Navigation */}
             <div className="flex items-center gap-4">
