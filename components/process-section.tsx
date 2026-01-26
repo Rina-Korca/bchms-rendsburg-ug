@@ -21,15 +21,10 @@ const steps = [
 
 export function ProcessSection() {
   return (
-    <section id="process" className="pt-64 pb-32 bg-white relative overflow-hidden lg:pt-72 lg:pb-60">
+    <section id="process" className="pt-16 pb-12 bg-white relative overflow-hidden lg:pt-24 lg:pb-16">
       {/* Decorative Watering Can - Top Right */}
       <div className="absolute top-40 md:top-48 -right-8 md:right-4 lg:right-12 w-40 md:w-56 lg:w-72 opacity-100 pointer-events-none rotate-[8deg] hidden sm:block">
         <img src="/images/watering-can.png" alt="" className="w-full h-auto" />
-      </div>
-
-      {/* Decorative Garden Tools - Bottom Left */}
-      <div className="absolute -bottom-4 -left-8 md:left-4 lg:left-12 w-48 md:w-64 lg:w-80 opacity-100 pointer-events-none hidden sm:block">
-        <img src="/images/garden-tools.png" alt="" className="w-full h-auto" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

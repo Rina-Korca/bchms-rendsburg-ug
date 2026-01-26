@@ -3,7 +3,7 @@ import { ArrowRight, Phone, CheckCircle2 } from "lucide-react";
 
 export function CTABanner() {
   return (
-    <section className="relative bg-gradient-to-b from-background via-background to-green-pale/20 pt-20 md:pt-28 pb-8 z-20 overflow-visible">
+    <section className="relative bg-gradient-to-b from-background via-background to-green-pale/20 pt-20 md:pt-28 pb-8 z-20 overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-light/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-green-medium/5 rounded-full blur-3xl pointer-events-none" />

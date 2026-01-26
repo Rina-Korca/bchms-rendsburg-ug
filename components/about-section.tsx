@@ -9,7 +9,7 @@ const features = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-16 lg:py-24 bg-green-pale/30">
+    <section id="about" className="py-16 lg:py-24 bg-green-pale/30 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Images */}

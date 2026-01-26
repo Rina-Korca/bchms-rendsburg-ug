@@ -35,7 +35,7 @@ const projectSlides = [
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="bg-white py-16 lg:py-24">
+    <section id="projects" className="bg-white py-16 lg:py-24 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <span className="mb-4 inline-block rounded-full bg-green-medium/10 px-4 py-2 text-sm font-semibold text-green-medium">
@@ -50,11 +50,11 @@ export function ProjectsSection() {
           </p>
         </div>
 
-        <div className="relative flex justify-start -mx-4 sm:-mx-6 lg:-mx-8">
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-green-pale/40 via-transparent to-green-pale/40 blur-3xl" />
+        <div className="relative flex justify-start overflow-hidden rounded-3xl">
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-green-pale/30 via-transparent to-green-pale/30 blur-3xl" />
           <Carousel
             slides={projectSlides}
-            className="z-10 h-[70vmin] max-h-[640px] w-screen max-w-none md:h-[55vmin]"
+            className="z-10 h-[70vmin] max-h-[640px] w-full max-w-full md:h-[55vmin]"
           />
         </div>
       </div>

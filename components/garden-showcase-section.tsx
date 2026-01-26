@@ -5,7 +5,7 @@ import { Leaf } from "lucide-react"
 
 export function GardenShowcaseSection() {
   return (
-    <section id="showcase" className="relative hidden sm:block -mt-8 md:-mt-12">
+    <section id="showcase" className="relative hidden sm:block -mt-8 md:-mt-12 pt-8 md:pt-12">
       <HeroScrollVideo
         title="Grün trifft Gestaltung"
         subtitle="Ihr Garten, unsere Leidenschaft"
