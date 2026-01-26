@@ -30,3 +30,7 @@ next-env.d.ts
 .DS_Store
 Thumbs.db
 *:Zone.Identifier
+
+# npm-only lockfile (pnpm project)
+package-lock.json
+npm-shrinkwrap.json
