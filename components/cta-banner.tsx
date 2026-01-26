@@ -417,12 +417,15 @@ export function CTABanner() {
                   {/* CTA Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                     <Button
+                      asChild
                       size="lg"
                       variant="outline"
                       className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 rounded-full px-8 font-semibold text-base bg-transparent transition-all duration-300"
                     >
-                      <Phone className="mr-2 h-5 w-5" />
-                      01522 5972872
+                      <a href="tel:015225972872">
+                        <Phone className="mr-2 h-5 w-5" />
+                        01522 5972872
+                      </a>
                     </Button>
                   </div>
                 </div>

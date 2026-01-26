@@ -6,11 +6,10 @@ import { Menu, X, Phone, Mail, MapPin, Leaf } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navLinks = [
-  { name: "Startseite", href: "#" },
+  { name: "Startseite", href: "#home" },
   { name: "Uber uns", href: "#about" },
   { name: "Leistungen", href: "#services" },
-  { name: "Team", href: "#team" },
-  { name: "Blog", href: "#blog" },
+  { name: "Projekte", href: "#projects" },
   { name: "Kontakt", href: "#contact" },
 ]
 
@@ -59,28 +58,31 @@ export function Header() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-green-medium rounded-full flex items-center justify-center">
-                <Leaf className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-xl font-bold text-green-dark">BCHMS Rendsburg Ug </span>
+            <Link href="/" className="flex items-center gap-3">
+              <img
+                src="/logo/logo.png"
+                alt="BCHMS Rendsburg UG Logo"
+                className="h-12 w-auto object-contain"
+              />
+              <span className="text-xl font-bold text-green-dark">BCHMS Rendsburg UG</span>
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div className="hidden lg:flex items-center gap-2 bg-green-pale/70 backdrop-blur-sm px-3 py-2 rounded-full border border-green-medium/10 shadow-sm">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-foreground hover:text-green-medium transition-colors font-medium"
+                  className="relative group px-3 py-2 text-sm font-semibold text-foreground/80 hover:text-green-dark transition-colors"
                 >
-                  {link.name}
+                  <span>{link.name}</span>
+                  <span className="pointer-events-none absolute inset-x-2 -bottom-1 h-0.5 bg-green-medium scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-full" />
                 </Link>
               ))}
             </div>
 
             {/* Phone CTA */}
-            <div className="hidden md:flex items-center gap-3">
+            <a href="tel:015225972872" className="hidden md:flex items-center gap-3">
               <div className="w-10 h-10 bg-green-medium rounded-full flex items-center justify-center">
                 <Phone className="h-5 w-5 text-white" />
               </div>
@@ -88,7 +90,7 @@ export function Header() {
                 <p className="text-xs text-muted-foreground">Jetzt anrufen</p>
                 <p className="font-semibold text-green-dark">01522 5972872</p>
               </div>
-            </div>
+            </a>
 
             {/* Mobile Menu Button */}
             <Button
@@ -116,7 +118,7 @@ export function Header() {
                     {link.name}
                   </Link>
                 ))}
-                <div className="flex items-center gap-3 pt-4 border-t border-border">
+                <a href="tel:015225972872" className="flex items-center gap-3 pt-4 border-t border-border">
                   <div className="w-10 h-10 bg-green-medium rounded-full flex items-center justify-center">
                     <Phone className="h-5 w-5 text-white" />
                   </div>
@@ -124,7 +126,7 @@ export function Header() {
                     <p className="text-xs text-muted-foreground">Jetzt anrufen</p>
                     <p className="font-semibold text-green-dark">01522 5972872</p>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           )}

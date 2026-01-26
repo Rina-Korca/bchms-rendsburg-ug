@@ -13,7 +13,7 @@ export function BlogSection() {
   const duplicatedImages = [...images, ...images]
 
   return (
-    <section id="gallery" className="py-16 lg:py-24 bg-green-dark relative overflow-hidden">
+    <section id="blog" className="py-16 lg:py-24 bg-green-dark relative overflow-hidden">
       <style>{`
         @keyframes scroll-right {
           0% { transform: translateX(0); }

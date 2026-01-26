@@ -21,7 +21,7 @@ const steps = [
 
 export function ProcessSection() {
   return (
-    <section className="pt-64 pb-32 bg-white relative overflow-hidden lg:pt-72 lg:pb-60">
+    <section id="process" className="pt-64 pb-32 bg-white relative overflow-hidden lg:pt-72 lg:pb-60">
       {/* Decorative Watering Can - Top Right */}
       <div className="absolute top-40 md:top-48 -right-8 md:right-4 lg:right-12 w-40 md:w-56 lg:w-72 opacity-100 pointer-events-none rotate-[8deg] hidden sm:block">
         <img src="/images/watering-can.png" alt="" className="w-full h-auto" />

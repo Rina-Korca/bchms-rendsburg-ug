@@ -498,6 +498,7 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
           text-align: center;
           transform-style: preserve-3d;
           max-width: min(100%, 1100px);
+          padding-top: clamp(48px, 14vh, 180px);
         }
         .hsv-headline > * {
           transform-style: preserve-3d;

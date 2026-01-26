@@ -1,9 +1,8 @@
-import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function HeroSection() {
   return (
-    <section className="relative bg-green-dark overflow-hidden">
+    <section id="home" className="relative bg-green-dark overflow-hidden">
       {/* Background Image Overlay */}
       <div 
         className="absolute inset-0 opacity-20"
@@ -39,18 +38,12 @@ export function HeroSection() {
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
               <Button 
-                size="lg" 
-                className="bg-green-light hover:bg-green-medium text-white rounded-full px-8 font-semibold"
-              >
-                Kostenloses Angebot
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button 
+                asChild
                 size="lg" 
                 variant="outline" 
                 className="border-white/30 text-white hover:bg-white/10 rounded-full px-8 font-semibold bg-transparent"
               >
-                Unsere Leistungen
+                <a href="#services">Unsere Leistungen</a>
               </Button>
             </div>
           </div>
