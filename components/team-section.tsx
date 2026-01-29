@@ -64,9 +64,6 @@ export function TeamSection() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-dark mb-4 text-balance">
             Auswahl unserer Arbeiten
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Ein Blick auf realisierte Projekte – von Naturpools uber Staudenhoefe bis hin zu gewerblichen Gruenanlagen.
-          </p>
         </div>
         
         {/* Team Grid - Advanced Layout */}

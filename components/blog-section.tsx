@@ -1,5 +1,4 @@
 const images = [
-  "/images/WhatsApp Image 2026-01-21 at 12.51.46 1.jpeg",
   "/images/WhatsApp Image 2026-01-21 at 12.51.47.jpeg",
   "/images/WhatsApp Image 2026-01-21 at 12.51.46.jpeg",
   "/images/WhatsApp Image 2026-01-21 at 12.53.20 (1).jpeg",
@@ -46,7 +45,7 @@ export function BlogSection() {
             Galerie unserer Projekte
           </h2>
           <p className="text-white/70 text-lg">
-            Entdecken Sie einige unserer schonsten Garten- und Landschaftsprojekte in Rendsburg und Umgebung.
+            Entdecken Sie unsere Garten- und Landschaftsprojekte sowie Eindruecke aus unserem Winterdienst in Rendsburg und Umgebung.
           </p>
         </div>
       </div>

@@ -1,11 +1,13 @@
 import { Carousel } from "@/components/ui/carousel";
 
 const projectSlides = [
+  /*
   {
     title: "Winterdienst Einfahrt & Gehweg",
     button: "Raeumung ansehen",
     src: "/images/WhatsApp Image 2026-01-21 at 12.50.31 (1).jpeg",
   },
+  */
   {
     title: "Streuen & Raeumen im Wohngebiet",
     button: "Mehr Winterdienst",
@@ -26,11 +28,13 @@ const projectSlides = [
     button: "Winterservice sehen",
     src: "/images/WhatsApp Image 2026-01-21 at 12.51.45 (1).jpeg",
   },
+  /*
   {
     title: "Fusswege und Treppen gestreut",
     button: "Einsatz ansehen",
     src: "/images/WhatsApp Image 2026-01-21 at 12.53.20 (4).jpeg",
   },
+  */
 ];
 
 export function ProjectsSection() {
