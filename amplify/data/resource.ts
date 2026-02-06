@@ -5,11 +5,16 @@ const schema = a.schema({
     .model({
       name: a.string().required(),
       email: a.string().required(),
-      phone: a.string(),
-      service: a.string(),
+      subject: a.string().required(),
       message: a.string().required(),
+      status: a.string().default("NEW"),
+      userAgent: a.string(),
+      ipAddress: a.string(),
     })
-    .authorization((allow) => [allow.publicApiKey().to(["create"])])
+    .authorization((allow) => [
+      allow.publicApiKey().to(["create"]),
+      allow.authenticated().to(["read", "list", "update", "delete"])
+    ])
 })
 
 export type Schema = ClientSchema<typeof schema>

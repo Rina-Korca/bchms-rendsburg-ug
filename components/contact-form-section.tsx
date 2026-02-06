@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { generateClient } from "aws-amplify/data"
 import type { Schema } from "@/amplify/data/resource"
 import { Button } from "@/components/ui/button"
@@ -15,23 +15,45 @@ export function ContactFormSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
-    service: "",
+    subject: "",
     message: "",
+    honeypot: "", // Spam protection
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [formLoadTime] = useState(Date.now())
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (isSubmitting) return
 
-    // Basic email validation
+    // Spam protection: honeypot field
+    if (formData.honeypot) {
+      console.log("Spam detected (honeypot)")
+      return
+    }
+
+    // Spam protection: minimum time check (3 seconds)
+    const timeSinceLoad = Date.now() - formLoadTime
+    if (timeSinceLoad < 3000) {
+      setStatus("error")
+      setErrorMessage("Bitte warten Sie einen Moment, bevor Sie das Formular absenden.")
+      return
+    }
+
+    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData.email.trim())) {
       setStatus("error")
       setErrorMessage("Bitte geben Sie eine gültige E-Mail-Adresse ein.")
+      return
+    }
+
+    // Validate required fields
+    if (!formData.name.trim() || !formData.subject.trim() || !formData.message.trim()) {
+      setStatus("error")
+      setErrorMessage("Bitte füllen Sie alle Pflichtfelder aus.")
       return
     }
 
@@ -40,20 +62,24 @@ export function ContactFormSection() {
     setErrorMessage(null)
 
     try {
+      // Get user agent and IP (IP will be null from browser, but we can get user agent)
+      const userAgent = navigator.userAgent
+
       await client.models.ContactMessage.create({
         name: formData.name.trim(),
         email: formData.email.trim(),
-        phone: formData.phone.trim() || undefined,
-        service: formData.service || undefined,
+        subject: formData.subject.trim(),
         message: formData.message.trim(),
+        userAgent,
+        status: "NEW",
       })
 
       setFormData({
         name: "",
         email: "",
-        phone: "",
-        service: "",
+        subject: "",
         message: "",
+        honeypot: "",
       })
       setStatus("success")
     } catch (error) {
@@ -129,51 +155,44 @@ export function ContactFormSection() {
             <CardContent className="p-8">
               <h3 className="text-2xl font-bold text-green-dark mb-6">Kostenloses Angebot anfordern</h3>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <Input
-                    placeholder="Ihr Name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                    disabled={isSubmitting}
-                    className="rounded-xl border-border bg-green-pale/30 h-12"
-                  />
-                  <Input
-                    type="email"
-                    placeholder="E-Mail-Adresse"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                    disabled={isSubmitting}
-                    className="rounded-xl border-border bg-green-pale/30 h-12"
-                  />
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <Input
-                    type="tel"
-                    placeholder="Telefonnummer"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    disabled={isSubmitting}
-                    className="rounded-xl border-border bg-green-pale/30 h-12"
-                  />
-                  <select
-                    value={formData.service}
-                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    disabled={isSubmitting}
-                    className="rounded-xl border border-border bg-green-pale/30 h-12 px-4 text-foreground w-full"
-                  >
-                    <option value="">Leistung auswahlen</option>
-                    <option value="lawn">Rasenpflege</option>
-                    <option value="tree">Baumschnitt</option>
-                    <option value="garden">Gartengestaltung</option>
-                    <option value="irrigation">Bewasserung</option>
-                    <option value="landscape">Landschaftsplanung</option>
-                    <option value="hardscape">Hardscaping</option>
-                  </select>
-                </div>
+                {/* Honeypot field - hidden from users */}
+                <input
+                  type="text"
+                  name="website"
+                  value={formData.honeypot}
+                  onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+                  style={{ position: "absolute", left: "-9999px" }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+                
+                <Input
+                  placeholder="Ihr Name *"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  required
+                  disabled={isSubmitting}
+                  className="rounded-xl border-border bg-green-pale/30 h-12"
+                />
+                <Input
+                  type="email"
+                  placeholder="E-Mail-Adresse *"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                  disabled={isSubmitting}
+                  className="rounded-xl border-border bg-green-pale/30 h-12"
+                />
+                <Input
+                  placeholder="Betreff *"
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  required
+                  disabled={isSubmitting}
+                  className="rounded-xl border-border bg-green-pale/30 h-12"
+                />
                 <Textarea
-                  placeholder="Erzahlen Sie uns von Ihrem Projekt..."
+                  placeholder="Ihre Nachricht *"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
