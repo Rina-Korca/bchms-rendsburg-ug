@@ -195,6 +195,9 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.2.3(@types/react@19.2.9)
+      aws-cdk-lib:
+        specifier: ^2.182.0
+        version: 2.237.1(constructs@10.4.5)
       esbuild:
         specifier: ^0.24.2
         version: 0.24.2
