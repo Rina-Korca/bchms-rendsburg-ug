@@ -2,14 +2,13 @@
 
 import { useState } from "react"
 import { generateClient } from "aws-amplify/data"
-import type { Schema } from "@/amplify/data/resource"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Send } from "lucide-react"
 
-const client = generateClient<Schema>()
+const client = generateClient()
 
 export function ContactFormSection() {
   const [formData, setFormData] = useState({
