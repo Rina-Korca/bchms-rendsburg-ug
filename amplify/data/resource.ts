@@ -1,4 +1,4 @@
-import { a, defineData } from "@aws-amplify/backend"
+import { a, defineData, type ClientSchema } from "@aws-amplify/backend"
 
 const schema = a.schema({
   ContactMessage: a
@@ -11,6 +11,8 @@ const schema = a.schema({
     })
     .authorization((allow) => [allow.publicApiKey().to(["create"])])
 })
+
+export type Schema = ClientSchema<typeof schema>
 
 export const data = defineData({
   schema,

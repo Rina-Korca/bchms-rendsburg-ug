@@ -2,13 +2,14 @@
 
 import { useState } from "react"
 import { generateClient } from "aws-amplify/data"
+import type { Schema } from "@/amplify/data/resource"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Send } from "lucide-react"
 
-const client = generateClient()
+const client = generateClient<Schema>()
 
 export function ContactFormSection() {
   const [formData, setFormData] = useState({
@@ -25,6 +26,14 @@ export function ContactFormSection() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (isSubmitting) return
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email.trim())) {
+      setStatus("error")
+      setErrorMessage("Bitte geben Sie eine gültige E-Mail-Adresse ein.")
+      return
+    }
 
     setIsSubmitting(true)
     setStatus("idle")
