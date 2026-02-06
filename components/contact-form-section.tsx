@@ -1,13 +1,15 @@
 "use client"
 
-import React from "react"
-
 import { useState } from "react"
+import { generateClient } from "aws-amplify/data"
+import type { Schema } from "@/amplify/data/resource"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Send } from "lucide-react"
+
+const client = generateClient<Schema>()
 
 export function ContactFormSection() {
   const [formData, setFormData] = useState({
@@ -17,11 +19,42 @@ export function ContactFormSection() {
     service: "",
     message: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
+    if (isSubmitting) return
+
+    setIsSubmitting(true)
+    setStatus("idle")
+    setErrorMessage(null)
+
+    try {
+      await client.models.ContactMessage.create({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim() || undefined,
+        service: formData.service || undefined,
+        message: formData.message.trim(),
+      })
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      })
+      setStatus("success")
+    } catch (error) {
+      console.error("Contact form submission failed", error)
+      setStatus("error")
+      setErrorMessage("Es gab ein Problem beim Senden. Bitte versuchen Sie es erneut.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -93,6 +126,8 @@ export function ContactFormSection() {
                     placeholder="Ihr Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
+                    disabled={isSubmitting}
                     className="rounded-xl border-border bg-green-pale/30 h-12"
                   />
                   <Input
@@ -100,6 +135,8 @@ export function ContactFormSection() {
                     placeholder="E-Mail-Adresse"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                    disabled={isSubmitting}
                     className="rounded-xl border-border bg-green-pale/30 h-12"
                   />
                 </div>
@@ -109,11 +146,13 @@ export function ContactFormSection() {
                     placeholder="Telefonnummer"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    disabled={isSubmitting}
                     className="rounded-xl border-border bg-green-pale/30 h-12"
                   />
                   <select
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                    disabled={isSubmitting}
                     className="rounded-xl border border-border bg-green-pale/30 h-12 px-4 text-foreground w-full"
                   >
                     <option value="">Leistung auswahlen</option>
@@ -129,14 +168,27 @@ export function ContactFormSection() {
                   placeholder="Erzahlen Sie uns von Ihrem Projekt..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  required
+                  disabled={isSubmitting}
                   className="rounded-xl border-border bg-green-pale/30 min-h-[120px]"
                 />
+                {status === "success" ? (
+                  <p className="text-sm text-green-dark font-medium" role="status">
+                    Vielen Dank! Ihre Anfrage wurde gesendet.
+                  </p>
+                ) : null}
+                {status === "error" ? (
+                  <p className="text-sm text-red-600 font-medium" role="status">
+                    {errorMessage}
+                  </p>
+                ) : null}
                 <Button 
                   type="submit" 
                   size="lg" 
+                  disabled={isSubmitting}
                   className="w-full bg-green-medium hover:bg-green-dark text-white rounded-full font-semibold"
                 >
-                  Anfrage senden
+                  {isSubmitting ? "Senden..." : "Anfrage senden"}
                   <Send className="ml-2 h-5 w-5" />
                 </Button>
               </form>

@@ -1,0 +1,8 @@
+type ContactMessage @model @auth(rules: [{allow: public, provider: apiKey, operations: [create]}])
+{
+  name: String!
+  email: String!
+  phone: String
+  service: String
+  message: String!
+}
