@@ -36,4 +36,4 @@ const sesPolicy = new Policy(backend.sendContactEmail.resources.lambda, "SESPoli
 backend.sendContactEmail.resources.lambda.role?.attachInlinePolicy(sesPolicy)
 
 // Add environment variable for FROM_EMAIL
-backend.sendContactEmail.addEnvironment("FROM_EMAIL", "noreply@yourdomain.com")
+backend.sendContactEmail.addEnvironment("FROM_EMAIL", "blerim-geci@hotmail.com")
