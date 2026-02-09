@@ -8,6 +8,32 @@
     "region"
    ]
   },
+  "AWS::Amplify::Auth": {
+   "version": "1",
+   "stackOutputs": [
+    "userPoolId",
+    "webClientId",
+    "identityPoolId",
+    "authRegion",
+    "allowUnauthenticatedIdentities",
+    "signupAttributes",
+    "usernameAttributes",
+    "verificationMechanisms",
+    "passwordPolicyMinLength",
+    "passwordPolicyRequirements",
+    "mfaConfiguration",
+    "mfaTypes",
+    "passwordlessOptions",
+    "socialProviders",
+    "oauthCognitoDomain",
+    "oauthScope",
+    "oauthRedirectSignIn",
+    "oauthRedirectSignOut",
+    "oauthResponseType",
+    "oauthClientId",
+    "groups"
+   ]
+  },
   "AWS::Amplify::GraphQL": {
    "version": "1",
    "stackOutputs": [
@@ -19,6 +45,12 @@
     "awsAppsyncApiKey",
     "awsAppsyncAdditionalAuthenticationTypes"
    ]
+  },
+  "AWS::Amplify::Function": {
+   "version": "1",
+   "stackOutputs": [
+    "definedFunctions"
+   ]
   }
  },
  "Outputs": {
@@ -29,6 +61,91 @@
    "Value": {
     "Ref": "AWS::Region"
    }
+  },
+  "userPoolId": {
+   "Value": {
+    "Fn::GetAtt": [
+     "auth179371D7",
+     "Outputs.amplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthUserPool44859569Ref"
+    ]
+   }
+  },
+  "webClientId": {
+   "Value": {
+    "Fn::GetAtt": [
+     "auth179371D7",
+     "Outputs.amplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthUserPoolAppClientB17BF3A9Ref"
+    ]
+   }
+  },
+  "identityPoolId": {
+   "Value": {
+    "Fn::GetAtt": [
+     "auth179371D7",
+     "Outputs.amplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef"
+    ]
+   }
+  },
+  "authRegion": {
+   "Value": {
+    "Ref": "AWS::Region"
+   }
+  },
+  "allowUnauthenticatedIdentities": {
+   "Value": "true"
+  },
+  "signupAttributes": {
+   "Value": "[\"email\"]"
+  },
+  "usernameAttributes": {
+   "Value": "[\"email\"]"
+  },
+  "verificationMechanisms": {
+   "Value": "[\"email\"]"
+  },
+  "passwordPolicyMinLength": {
+   "Value": "8"
+  },
+  "passwordPolicyRequirements": {
+   "Value": "[\"REQUIRES_NUMBERS\",\"REQUIRES_LOWERCASE\",\"REQUIRES_UPPERCASE\",\"REQUIRES_SYMBOLS\"]"
+  },
+  "mfaConfiguration": {
+   "Value": "OFF"
+  },
+  "mfaTypes": {
+   "Value": "[]"
+  },
+  "passwordlessOptions": {
+   "Value": ""
+  },
+  "socialProviders": {
+   "Value": ""
+  },
+  "oauthCognitoDomain": {
+   "Value": ""
+  },
+  "oauthScope": {
+   "Value": "[\"profile\",\"phone\",\"email\",\"openid\",\"aws.cognito.signin.user.admin\"]"
+  },
+  "oauthRedirectSignIn": {
+   "Value": "https://example.com"
+  },
+  "oauthRedirectSignOut": {
+   "Value": ""
+  },
+  "oauthResponseType": {
+   "Value": "code"
+  },
+  "oauthClientId": {
+   "Value": {
+    "Fn::GetAtt": [
+     "auth179371D7",
+     "Outputs.amplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthUserPoolAppClientB17BF3A9Ref"
+    ]
+   }
+  },
+  "groups": {
+   "Value": "[]"
   },
   "awsAppsyncApiId": {
    "Value": {
@@ -100,11 +217,28 @@
    }
   },
   "awsAppsyncAdditionalAuthenticationTypes": {
-   "Value": "AWS_IAM"
+   "Value": "AMAZON_COGNITO_USER_POOLS,AWS_IAM"
+  },
+  "definedFunctions": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "[\"",
+      {
+       "Fn::GetAtt": [
+        "function1351588B",
+        "Outputs.amplifymyv0projectrinakorcasandbox98414eb77ffunctionsendcontactemaillambdaBC591442Ref"
+       ]
+      },
+      "\"]"
+     ]
+    ]
+   }
   }
  },
  "Resources": {
-  "data7552DF31": {
+  "auth179371D7": {
    "Type": "AWS::CloudFormation::Stack",
    "Properties": {
     "Tags": [
@@ -133,7 +267,75 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
        },
-       "/fca7775b75021b70a19350f5a59af09c89f506d69237d4aa42ac483ec3471173.json"
+       "/e1e8e37cf34498b88d84cc2f074c672fe85775eae57ee1df7e9e8db69283fd50.json"
+      ]
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-myv0project-rinakorca-sandbox-98414eb77f/auth.NestedStack/auth.NestedStackResource",
+    "aws:asset:path": "amplifymyv0projectrinakorcasandbox98414eb77fauthF6B50421.nested.template.json",
+    "aws:asset:property": "TemplateURL"
+   }
+  },
+  "data7552DF31": {
+   "Type": "AWS::CloudFormation::Stack",
+   "Properties": {
+    "Parameters": {
+     "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthUserPool44859569Ref": {
+      "Fn::GetAtt": [
+       "auth179371D7",
+       "Outputs.amplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthUserPool44859569Ref"
+      ]
+     },
+     "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef": {
+      "Fn::GetAtt": [
+       "auth179371D7",
+       "Outputs.amplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef"
+      ]
+     },
+     "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef": {
+      "Fn::GetAtt": [
+       "auth179371D7",
+       "Outputs.amplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef"
+      ]
+     },
+     "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef": {
+      "Fn::GetAtt": [
+       "auth179371D7",
+       "Outputs.amplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef"
+      ]
+     }
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "TemplateURL": {
+     "Fn::Join": [
+      "",
+      [
+       "https://s3.",
+       {
+        "Ref": "AWS::Region"
+       },
+       ".",
+       {
+        "Ref": "AWS::URLSuffix"
+       },
+       "/",
+       {
+        "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+       },
+       "/133769af5e246a01fd403e2b649a8b9fbc8498b6e821aae00f44e7de255d493c.json"
       ]
      ]
     }
@@ -143,6 +345,56 @@
    "Metadata": {
     "aws:cdk:path": "amplify-myv0project-rinakorca-sandbox-98414eb77f/data.NestedStack/data.NestedStackResource",
     "aws:asset:path": "amplifymyv0projectrinakorcasandbox98414eb77fdataFC2091FC.nested.template.json",
+    "aws:asset:property": "TemplateURL"
+   }
+  },
+  "function1351588B": {
+   "Type": "AWS::CloudFormation::Stack",
+   "Properties": {
+    "Parameters": {
+     "referencetoamplifymyv0projectrinakorcasandbox98414eb77fdataNestedStackdataNestedStackResource42525626Outputsamplifymyv0projectrinakorcasandbox98414eb77fdataamplifyDataContactMessageNestedStackContactMessageNestedStackResourceA6ED87A4Outputs5E505D78": {
+      "Fn::GetAtt": [
+       "data7552DF31",
+       "Outputs.amplifymyv0projectrinakorcasandbox98414eb77fdataamplifyDataContactMessageNestedStackContactMessageNestedStackResourceA6ED87A4Outputsamplifymyv0projectrinakorcasandbox98414eb77fdataamplifyDataContactMessageContactMessageTable8E0EFE4CTableStreamArn"
+      ]
+     }
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "TemplateURL": {
+     "Fn::Join": [
+      "",
+      [
+       "https://s3.",
+       {
+        "Ref": "AWS::Region"
+       },
+       ".",
+       {
+        "Ref": "AWS::URLSuffix"
+       },
+       "/",
+       {
+        "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+       },
+       "/03df9c2286d980ce288db361e212e41472fe64cf29e9884d2a17b88e1ddca3f0.json"
+      ]
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-myv0project-rinakorca-sandbox-98414eb77f/function.NestedStack/function.NestedStackResource",
+    "aws:asset:path": "amplifymyv0projectrinakorcasandbox98414eb77ffunction5494DA1A.nested.template.json",
     "aws:asset:property": "TemplateURL"
    }
   },

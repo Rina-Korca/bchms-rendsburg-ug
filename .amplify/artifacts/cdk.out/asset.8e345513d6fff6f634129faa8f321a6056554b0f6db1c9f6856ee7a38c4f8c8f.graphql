@@ -1,0 +1,261 @@
+type ContactMessage @aws_iam @aws_cognito_user_pools @aws_api_key {
+  name: String!
+  email: String!
+  subject: String!
+  message: String!
+  status: String
+  userAgent: String
+  ipAddress: String
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input AmplifyAIConversationTurnErrorInput {
+  errorType: String!
+  message: String!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelContactMessageConnection @aws_iam @aws_cognito_user_pools {
+  items: [ContactMessage]!
+  nextToken: String
+}
+
+input ModelContactMessageFilterInput {
+  name: ModelStringInput
+  email: ModelStringInput
+  subject: ModelStringInput
+  message: ModelStringInput
+  status: ModelStringInput
+  userAgent: ModelStringInput
+  ipAddress: ModelStringInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelContactMessageFilterInput]
+  or: [ModelContactMessageFilterInput]
+  not: ModelContactMessageFilterInput
+}
+
+type Query {
+  getContactMessage(id: ID!): ContactMessage @aws_iam @aws_cognito_user_pools
+  listContactMessages(filter: ModelContactMessageFilterInput, limit: Int, nextToken: String): ModelContactMessageConnection @aws_iam @aws_cognito_user_pools
+}
+
+input ModelContactMessageConditionInput {
+  name: ModelStringInput
+  email: ModelStringInput
+  subject: ModelStringInput
+  message: ModelStringInput
+  status: ModelStringInput
+  userAgent: ModelStringInput
+  ipAddress: ModelStringInput
+  and: [ModelContactMessageConditionInput]
+  or: [ModelContactMessageConditionInput]
+  not: ModelContactMessageConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input CreateContactMessageInput {
+  name: String!
+  email: String!
+  subject: String!
+  message: String!
+  status: String
+  userAgent: String
+  ipAddress: String
+  id: ID
+}
+
+input UpdateContactMessageInput {
+  name: String
+  email: String
+  subject: String
+  message: String
+  status: String
+  userAgent: String
+  ipAddress: String
+  id: ID!
+}
+
+input DeleteContactMessageInput {
+  id: ID!
+}
+
+type Mutation {
+  createContactMessage(input: CreateContactMessageInput!, condition: ModelContactMessageConditionInput): ContactMessage @aws_api_key @aws_iam
+  updateContactMessage(input: UpdateContactMessageInput!, condition: ModelContactMessageConditionInput): ContactMessage @aws_iam @aws_cognito_user_pools
+  deleteContactMessage(input: DeleteContactMessageInput!, condition: ModelContactMessageConditionInput): ContactMessage @aws_iam @aws_cognito_user_pools
+}
+
+input ModelSubscriptionContactMessageFilterInput {
+  name: ModelSubscriptionStringInput
+  email: ModelSubscriptionStringInput
+  subject: ModelSubscriptionStringInput
+  message: ModelSubscriptionStringInput
+  status: ModelSubscriptionStringInput
+  userAgent: ModelSubscriptionStringInput
+  ipAddress: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionContactMessageFilterInput]
+  or: [ModelSubscriptionContactMessageFilterInput]
+}
+
+type Subscription {
+  onCreateContactMessage(filter: ModelSubscriptionContactMessageFilterInput): ContactMessage @aws_subscribe(mutations: ["createContactMessage"]) @aws_iam @aws_cognito_user_pools
+  onUpdateContactMessage(filter: ModelSubscriptionContactMessageFilterInput): ContactMessage @aws_subscribe(mutations: ["updateContactMessage"]) @aws_iam @aws_cognito_user_pools
+  onDeleteContactMessage(filter: ModelSubscriptionContactMessageFilterInput): ContactMessage @aws_subscribe(mutations: ["deleteContactMessage"]) @aws_iam @aws_cognito_user_pools
+}

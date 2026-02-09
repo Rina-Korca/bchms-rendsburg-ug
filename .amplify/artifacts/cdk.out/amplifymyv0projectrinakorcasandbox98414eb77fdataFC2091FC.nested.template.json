@@ -1,10 +1,21 @@
 {
- "Description": "{\"createdOn\":\"Linux\",\"createdBy\":\"AmplifySandbox\",\"createdWith\":\"1.21.0\",\"stackType\":\"api-AppSync\",\"metadata\":{\"dataSources\":\"dynamodb\",\"authorizationModes\":\"api_key,aws_iam\",\"customOperations\":\"\"}}",
+ "Description": "{\"createdOn\":\"Linux\",\"createdBy\":\"AmplifySandbox\",\"createdWith\":\"1.21.0\",\"stackType\":\"api-AppSync\",\"metadata\":{\"dataSources\":\"dynamodb\",\"authorizationModes\":\"amazon_cognito_identity_pools,amazon_cognito_user_pools,api_key,aws_iam\",\"customOperations\":\"\"}}",
  "Resources": {
   "amplifyDataGraphQLAPI42A6FA33": {
    "Type": "AWS::AppSync::GraphQLApi",
    "Properties": {
     "AdditionalAuthenticationProviders": [
+     {
+      "AuthenticationType": "AMAZON_COGNITO_USER_POOLS",
+      "UserPoolConfig": {
+       "AwsRegion": {
+        "Ref": "AWS::Region"
+       },
+       "UserPoolId": {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthUserPool44859569Ref"
+       }
+      }
+     },
      {
       "AuthenticationType": "AWS_IAM"
      }
@@ -42,7 +53,7 @@
      ]
     },
     "DefinitionS3Location": {
-     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/53d4cf4e76cc948b0708ffc4c8e938ee55e82e843d99d2579269615f84e70d60.graphql"
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/8e345513d6fff6f634129faa8f321a6056554b0f6db1c9f6856ee7a38c4f8c8f.graphql"
     }
    },
    "UpdateReplacePolicy": "Delete",
@@ -60,7 +71,7 @@
       "ApiId"
      ]
     },
-    "Expires": 1772977508
+    "Expires": 1773222346
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
@@ -177,6 +188,15 @@
        "amplifyDataGraphQLAPINONEDS684BF699",
        "Name"
       ]
+     },
+     "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef": {
+      "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef"
+     },
+     "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef": {
+      "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef"
+     },
+     "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef": {
+      "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef"
      }
     },
     "Tags": [
@@ -209,7 +229,7 @@
        {
         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
        },
-       "/4265d98ea04a64b3981c70bfc6da6119270b7778b4e47997e3c17345f634b9fe.json"
+       "/365bad1d9d75fe5050aedd3121958484c23c6b151c0fa21a13005ec595daecf2.json"
       ]
      ]
     }
@@ -398,7 +418,7 @@
      }
     ],
     "SourceObjectKeys": [
-     "4b9d9776695e3adccdd93400a343312695ad927b24604b1d5abc2c029cc0066b.zip"
+     "62b80cd472165fe614c7af453b6dd7c06bc2c1dc2f67ff363026afb9d24db446.zip"
     ],
     "SourceMarkers": [
      {}
@@ -903,7 +923,7 @@
      }
     ],
     "SourceObjectKeys": [
-     "73068a3d92160b6f394fb70453bc6e7e6abc2387db845b96d1496b74e4abe1a8.zip"
+     "297fa72ba4c3e8f7cccdcf4c1b2998ef7258c826ede054f6c35985099917441d.zip"
     ],
     "SourceMarkers": [
      {}
@@ -999,7 +1019,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11QyW7CMBD9Fu7GZTlwDkHtoQhRIvWKBmcIBi+pxyGKrPx75ZiGtqe3aUZvZsEXyxWfT6ClqShvUyVPPOyQPJaFB3Fj0NIxQF1TZwQPbw7qy5fKarkGQpafzeB8bLNa/lKFuKCGaGS1fMeO7azBDXgobOPEMPdUPaMlD+tG3NDH5MES7K2SonvaD51E7BCnj6HEWtlOo/E8RZvRYECEnngWoWcK9KkEHvKz2UKH7hMdSWtYIU2l0Fvz2hjhozOS/DyaPZOgeThYNRwx4LNiYj0j0jwU3klT7cGBRo9uyH9E30eZHpw35K0+II2vGXnqelSx5xFaEkryrKVcyaE6G04qPFTSVH/2/1u6d/YuS3TpX8aWyK/0cl/M+HzFZ5MrSTl1jfFSIz8k/AaiXRAWGAIAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Qy27CMBD8Fu7GpXDgHILaQxGiROo1WpxNMPiReh2iKMq/V44htD3NY7Wj2V3y5WrNX2fQ0lwU17mSJ97vkTwWmQdxZUck2ziBDFrKe6hr6ozg/buD+vytklpugJClpRmdz11Sy18qE2fUEIyklh/Ysb01uAUPWQxNS/NUA6MV7zeNuKIPkzuLcLBKiu5p33UUoUPYzvsCa2U7jcbzONpOBgMi9MSTAANToE8F8D4tzQ46dF/oSFrDMmkqhd6at8YIH5yJpOVkDkyC5v3RqvGIEZ8VIxsYkeZ95p001QEcaPToxvlDDEOQ8dNpQ97q6d8h9cFj11yFnjm0JJTkSUupkmN1Np6Ueaikqf7k/ws9OHuTBbr4L2ML5Bd6uS0X/HXNF7MLSTl3jfFSIz9G/AHkJd58IQIAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "amplify-myv0project-rinakorca-sandbox-98414eb77f/data/CDKMetadata/Default"
@@ -1044,6 +1064,18 @@
     "false"
    ],
    "Description": "Enable server side encryption powered by KMS."
+  },
+  "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthUserPool44859569Ref": {
+   "Type": "String"
+  },
+  "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef": {
+   "Type": "String"
+  },
+  "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef": {
+   "Type": "String"
+  },
+  "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef": {
+   "Type": "String"
   }
  },
  "Conditions": {
@@ -1342,6 +1374,14 @@
     "Fn::GetAtt": [
      "amplifyDataGraphQLAPIDefaultApiKey1C8ED374",
      "ApiKey"
+    ]
+   }
+  },
+  "amplifymyv0projectrinakorcasandbox98414eb77fdataamplifyDataContactMessageNestedStackContactMessageNestedStackResourceA6ED87A4Outputsamplifymyv0projectrinakorcasandbox98414eb77fdataamplifyDataContactMessageContactMessageTable8E0EFE4CTableStreamArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "amplifyDataContactMessageNestedStackContactMessageNestedStackResource12EAEC04",
+     "Outputs.amplifymyv0projectrinakorcasandbox98414eb77fdataamplifyDataContactMessageContactMessageTable8E0EFE4CTableStreamArn"
     ]
    }
   }

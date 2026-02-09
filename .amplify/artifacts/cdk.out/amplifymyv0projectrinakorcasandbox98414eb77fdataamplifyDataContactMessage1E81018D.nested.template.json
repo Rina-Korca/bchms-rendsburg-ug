@@ -45,6 +45,15 @@
   },
   "referencetoamplifymyv0projectrinakorcasandbox98414eb77fdataamplifyDataGraphQLAPINONEDS1D23E0D9Name": {
    "Type": "String"
+  },
+  "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef": {
+   "Type": "String"
+  },
+  "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef": {
+   "Type": "String"
+  },
+  "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef": {
+   "Type": "String"
   }
  },
  "Conditions": {
@@ -604,7 +613,7 @@
     "FunctionVersion": "2018-05-29",
     "Name": "QuerygetContactMessageauth0Function",
     "RequestMappingTemplateS3Location": {
-     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/33f235eace052a004c8d58224676d1777e3edb468ff53d4ef237da9344eadfa3.vtl"
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6677b1986afebbf1f4026c57099890e32ab4e450e422c5e3c930b085a73b6b60.vtl"
     },
     "ResponseMappingTemplate": "$util.toJson({})"
    },
@@ -731,6 +740,34 @@
          }
         ]
        },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef"
+       },
        "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
       ]
      ]
@@ -756,7 +793,7 @@
     "FunctionVersion": "2018-05-29",
     "Name": "QuerylistContactMessagesauth0Function",
     "RequestMappingTemplateS3Location": {
-     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/33f235eace052a004c8d58224676d1777e3edb468ff53d4ef237da9344eadfa3.vtl"
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6677b1986afebbf1f4026c57099890e32ab4e450e422c5e3c930b085a73b6b60.vtl"
     },
     "ResponseMappingTemplate": "$util.toJson({})"
    },
@@ -883,6 +920,34 @@
          }
         ]
        },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef"
+       },
        "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
       ]
      ]
@@ -918,6 +983,28 @@
     "aws:cdk:path": "amplify-myv0project-rinakorca-sandbox-98414eb77f/data/amplifyData/ContactMessage/MutationcreateContactMessageinit0Function/MutationcreateContactMessageinit0Function.AppSyncFunction"
    }
   },
+  "MutationcreateContactMessageinit1FunctionMutationcreateContactMessageinit1FunctionAppSyncFunction117D1E1B": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fdataamplifyDataGraphQLAPID93FF32BApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fdataamplifyDataGraphQLAPINONEDS1D23E0D9Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateContactMessageinit1Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/8c1048d2498dd7ac7792cf5ed0de9a0acfc6d8d4ea75d26f937ed7a27cb49504.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-myv0project-rinakorca-sandbox-98414eb77f/data/amplifyData/ContactMessage/MutationcreateContactMessageinit1Function/MutationcreateContactMessageinit1Function.AppSyncFunction"
+   }
+  },
   "MutationcreateContactMessageauth0FunctionMutationcreateContactMessageauth0FunctionAppSyncFunction301B5A9D": {
    "Type": "AWS::AppSync::FunctionConfiguration",
    "Properties": {
@@ -930,7 +1017,7 @@
     "FunctionVersion": "2018-05-29",
     "Name": "MutationcreateContactMessageauth0Function",
     "RequestMappingTemplateS3Location": {
-     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/eda4511e01e0956a1b97d4ca904a6671ee21a1a583dff170fb18cbbd4f9dd6e6.vtl"
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/d637c1fb7301003b8a5ada269338cf2e8df6cc0dc412ef13acc6158d680b6d3e.vtl"
     },
     "ResponseMappingTemplate": "$util.toJson({})"
    },
@@ -1010,6 +1097,12 @@
       },
       {
        "Fn::GetAtt": [
+        "MutationcreateContactMessageinit1FunctionMutationcreateContactMessageinit1FunctionAppSyncFunction117D1E1B",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
         "MutationcreateContactMessageauth0FunctionMutationcreateContactMessageauth0FunctionAppSyncFunction301B5A9D",
         "FunctionId"
        ]
@@ -1062,6 +1155,34 @@
           ]
          }
         ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef"
        },
        "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
       ]
@@ -1116,7 +1237,7 @@
      "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
     },
     "ResponseMappingTemplateS3Location": {
-     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a96edf7794a287be26a500d6bf35e11906e67f82e85a42a32a71dc5680160538.vtl"
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/58a246af4be16a1ddccdbae460faba9ba768ae2655833a75797307311c63ad0f.vtl"
     }
    },
    "DependsOn": [
@@ -1251,6 +1372,34 @@
          }
         ]
        },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef"
+       },
        "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
       ]
      ]
@@ -1282,7 +1431,7 @@
      "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
     },
     "ResponseMappingTemplateS3Location": {
-     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a47d4e6ce37770ca1ef630c6d271473c150b443b79ef04f8dfae58e940d64bb5.vtl"
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/d9026b39b763f6e1ba5a06488ea2fbfe6eb653fb4c7ebeb3d0aafabe2928d34b.vtl"
     }
    },
    "DependsOn": [
@@ -1411,6 +1560,34 @@
          }
         ]
        },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef"
+       },
        "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
       ]
      ]
@@ -1436,7 +1613,7 @@
     "FunctionVersion": "2018-05-29",
     "Name": "SubscriptiononCreateContactMessageauth0Function",
     "RequestMappingTemplateS3Location": {
-     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f2c2a10e63d0f4dd14a3fae449715627b5d9a6c150b15691047b75685a7d2c3f.vtl"
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4843bc77043eb1b2460e9b1e3df9218ebee2b5c86adc9e9f789a60b4f3a02049.vtl"
     },
     "ResponseMappingTemplate": "$util.toJson({})"
    },
@@ -1530,7 +1707,35 @@
        {
         "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fdataamplifyDataGraphQLAPID93FF32BApiId"
        },
-       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
       ]
      ]
     },
@@ -1555,7 +1760,7 @@
     "FunctionVersion": "2018-05-29",
     "Name": "SubscriptiononUpdateContactMessageauth0Function",
     "RequestMappingTemplateS3Location": {
-     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f2c2a10e63d0f4dd14a3fae449715627b5d9a6c150b15691047b75685a7d2c3f.vtl"
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4843bc77043eb1b2460e9b1e3df9218ebee2b5c86adc9e9f789a60b4f3a02049.vtl"
     },
     "ResponseMappingTemplate": "$util.toJson({})"
    },
@@ -1649,7 +1854,35 @@
        {
         "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fdataamplifyDataGraphQLAPID93FF32BApiId"
        },
-       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
       ]
      ]
     },
@@ -1674,7 +1907,7 @@
     "FunctionVersion": "2018-05-29",
     "Name": "SubscriptiononDeleteContactMessageauth0Function",
     "RequestMappingTemplateS3Location": {
-     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f2c2a10e63d0f4dd14a3fae449715627b5d9a6c150b15691047b75685a7d2c3f.vtl"
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4843bc77043eb1b2460e9b1e3df9218ebee2b5c86adc9e9f789a60b4f3a02049.vtl"
     },
     "ResponseMappingTemplate": "$util.toJson({})"
    },
@@ -1768,7 +2001,35 @@
        {
         "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fdataamplifyDataGraphQLAPID93FF32BApiId"
        },
-       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthauthenticatedUserRoleE70328AARef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthunauthenticatedUserRole31D2BB9FRef"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifymyv0projectrinakorcasandbox98414eb77fauthNestedStackauthNestedStackResourceBBD104C8Outputsamplifymyv0projectrinakorcasandbox98414eb77fauthamplifyAuthIdentityPoolC4CC73EDRef"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
       ]
      ]
     },
@@ -1841,6 +2102,14 @@
       ]
      ]
     }
+   }
+  },
+  "amplifymyv0projectrinakorcasandbox98414eb77fdataamplifyDataContactMessageContactMessageTable8E0EFE4CTableStreamArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ContactMessageTable",
+     "TableStreamArn"
+    ]
    }
   }
  }

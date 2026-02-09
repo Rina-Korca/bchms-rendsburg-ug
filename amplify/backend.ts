@@ -1,10 +1,12 @@
 import { defineBackend } from "@aws-amplify/backend"
 import { StartingPosition } from "aws-cdk-lib/aws-lambda"
+import { auth } from "./auth/resource.js"
 import { data } from "./data/resource.js"
 import { sendContactEmail } from "./functions/send-contact-email/resource.js"
 import { Policy, PolicyStatement } from "aws-cdk-lib/aws-iam"
 
 const backend = defineBackend({
+  auth,
   data,
   sendContactEmail,
 })
@@ -14,6 +16,7 @@ const contactMessageTable = backend.data.resources.tables["ContactMessage"]
 
 // Add DynamoDB stream trigger to Lambda
 if (contactMessageTable) {
+  contactMessageTable.grantStreamRead(backend.sendContactEmail.resources.lambda)
   backend.sendContactEmail.resources.lambda.addEventSourceMapping(
     "ContactMessageStreamTrigger",
     {

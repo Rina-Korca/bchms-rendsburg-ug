@@ -13,7 +13,7 @@ const schema = a.schema({
     })
     .authorization((allow) => [
       allow.publicApiKey().to(["create"]),
-      allow.authenticated().to(["read", "list", "update", "delete"])
+      allow.authenticated().to(["read", "update", "delete"])
     ])
 })
 
