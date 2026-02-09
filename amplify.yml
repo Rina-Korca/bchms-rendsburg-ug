@@ -5,7 +5,6 @@ backend:
       commands:
         - corepack enable
         - corepack prepare pnpm@10.14.0 --activate
-        - pnpm config set ignore-scripts false
         - pnpm install --no-frozen-lockfile
     build:
       commands:
@@ -20,11 +19,12 @@ frontend:
       commands:
         - corepack enable
         - corepack prepare pnpm@10.14.0 --activate
-        - pnpm config set ignore-scripts false
+        - echo "unsafe-perm=true" > .npmrc
         - pnpm install --no-frozen-lockfile
     build:
       commands:
-        - export NODE_OPTIONS="--max-old-space-size=6144"
+        - export NODE_OPTIONS="--max-old-space-size=4096"
+        - export NEXT_TELEMETRY_DISABLED=1
         - pnpm run build
   artifacts:
     baseDirectory: .next
