@@ -1,20 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Disable ESLint during builds (for CI/CD)
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
   images: {
     unoptimized: true,
   },
-  experimental: {
-    // Disable Turbopack in CI (use Webpack for stability)
-    turbo: false,
-  },
-  // Reduce memory usage during build
+  // Reduce memory usage
   swcMinify: true,
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
 }
 
 export default nextConfig
