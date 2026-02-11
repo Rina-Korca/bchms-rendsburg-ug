@@ -186,6 +186,9 @@ importers:
       '@aws-amplify/backend-cli':
         specifier: ^1.8.2
         version: 1.8.2(@aws-cdk/cli-plugin-contract@2.182.1)(@aws-sdk/types@3.973.1)(@types/node@22.19.7)(aws-cdk-lib@2.237.1(constructs@10.4.5))(constructs@10.4.5)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)
+      '@aws-amplify/backend-function':
+        specifier: ^1.16.0
+        version: 1.16.0(@aws-cdk/cli-plugin-contract@2.182.1)(@aws-sdk/types@3.973.1)(aws-cdk-lib@2.237.1(constructs@10.4.5))(constructs@10.4.5)(zod@3.25.76)
       '@tailwindcss/postcss':
         specifier: ^4.1.9
         version: 4.1.18

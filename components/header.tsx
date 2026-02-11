@@ -133,12 +133,6 @@ export function Header() {
         </div>
       </nav>
 
-      {/* Prototype Notice */}
-      <div className="bg-green-light/40 border-b border-green-light/60">
-        <div className="container mx-auto px-4 py-2 text-center text-sm font-semibold text-green-dark">
-          Dies ist nur ein Prototyp, nicht die finale Website
-        </div>
-      </div>
     </header>
   )
 }

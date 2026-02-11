@@ -1,11 +1,23 @@
 "use client"
 
 import type { ReactNode } from "react"
-import { Amplify } from "aws-amplify"
 import outputs from "@/amplify_outputs.json"
+import { Amplify } from "aws-amplify"
+import { ConsentAnalytics } from "@/components/consent-analytics"
+import { CookieConsentProvider } from "@/components/cookie-consent"
 
-Amplify.configure(outputs, { ssr: true })
+let isAmplifyConfigured = false
+
+if (!isAmplifyConfigured) {
+  Amplify.configure(outputs, { ssr: true })
+  isAmplifyConfigured = true
+}
 
 export default function Providers({ children }: { children: ReactNode }) {
-  return children
+  return (
+    <CookieConsentProvider>
+      {children}
+      <ConsentAnalytics />
+    </CookieConsentProvider>
+  )
 }

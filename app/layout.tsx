@@ -1,7 +1,6 @@
 import React from "react"
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import Providers from './providers'
 import './globals.css'
 
@@ -43,7 +42,6 @@ export default function RootLayout({
     <html lang="de">
       <body className={`${plusJakarta.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
-        <Analytics />
       </body>
     </html>
   )

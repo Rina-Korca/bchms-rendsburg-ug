@@ -1,148 +1,110 @@
-'use client';
+'use client'
 
-import React from "react"
+import Link from 'next/link'
+import { Leaf, Mail, MapPin, Phone } from 'lucide-react'
 
-import { useState } from "react"
-
-import Link from "next/link"
-import { Leaf, Mail, Phone, MapPin } from "lucide-react"
+import { useCookieConsent } from '@/components/cookie-consent'
 
 const quickLinks = [
-  { name: "Startseite", href: "#" },
-  { name: "Uber uns", href: "#about" },
-  { name: "Leistungen", href: "#services" },
-  { name: "Unser Team", href: "#team" },
-  { name: "Blog", href: "#blog" },
-  { name: "Kontakt", href: "#contact" },
+  { name: 'Startseite', href: '/' },
+  { name: 'Über uns', href: '/#about' },
+  { name: 'Leistungen', href: '/#services' },
+  { name: 'Unser Team', href: '/#team' },
+  { name: 'Blog', href: '/#blog' },
+  { name: 'Kontakt', href: '/#contact' },
 ]
 
-const services = [
-  { name: "Rasenpflege", href: "#services" },
-  { name: "Baumschnitt", href: "#services" },
-  { name: "Gartengestaltung", href: "#services" },
-  { name: "Bewasserungssysteme", href: "#services" },
-  { name: "Landschaftsplanung", href: "#services" },
-  { name: "Hardscaping", href: "#services" },
-  { name: "Winterdienst & Schneeraeumung", href: "#services" },
-]
-
-const socialLinks = [
-  { name: "Facebook", initial: "F" },
-  { name: "Twitter", initial: "T" },
-  { name: "Instagram", initial: "I" },
-  { name: "LinkedIn", initial: "L" },
+const legalLinks = [
+  { name: 'Impressum', href: '/impressum' },
+  { name: 'Datenschutz', href: '/datenschutz' },
+  { name: 'Cookie-Richtlinie', href: '/cookie-richtlinie' },
 ]
 
 export function Footer() {
+  const { openPreferences } = useCookieConsent()
+
   return (
-    <footer className="relative z-10">
-      {/* Subtle background pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5C30 5 20 15 20 25C20 35 30 40 30 50' stroke='white' strokeWidth='1' fill='none'/%3E%3Cpath d='M40 10C40 10 35 20 35 28C35 36 40 45 40 55' stroke='white' strokeWidth='1' fill='none'/%3E%3C/svg%3E")`,
-          backgroundSize: '60px 60px'
-        }}
-      />
-      
-      <div 
-        className="bg-green-dark pt-24 md:pt-32 pb-8 relative"
-        style={{ borderRadius: "1.5rem 1.5rem 0 0" }}
-      >
-        <div className="container mx-auto px-4">
-          {/* Main Footer Content */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-white mb-12">
-            {/* Brand Column */}
-            <div>
-              <Link href="/" className="flex items-center gap-2 mb-4">
-                <div className="w-10 h-10 bg-green-light rounded-full flex items-center justify-center">
-                  <Leaf className="h-6 w-6 text-white" />
-                </div>
-                <span className="text-xl font-bold">BCHMS Rendsburg</span>
-              </Link>
-              <p className="text-white/70 mb-6 leading-relaxed">
-                Wir schaffen wunderschone Aussenraume, die Ihren Lebensstil und den Wert Ihrer Immobilie steigern. 
-                Professionelle Landschaftsbau-Dienstleistungen seit 2010.
-              </p>
-              <div className="flex gap-3">
-                {socialLinks.map((social, index) => (
-                  <button
-                    key={index}
-                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-light transition-colors"
-                    aria-label={social.name}
+    <footer className="relative z-10 bg-green-dark pt-20 pb-8 text-white md:pt-24">
+      <div className="container mx-auto px-4">
+        <div className="mb-12 grid gap-8 md:grid-cols-[1.4fr_1fr_1fr]">
+          <div>
+            <Link href="/" className="mb-4 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-light">
+                <Leaf className="h-6 w-6 text-white" />
+              </div>
+              <span className="text-xl font-bold">BCHMS Rendsburg</span>
+            </Link>
+            <p className="max-w-lg text-sm leading-relaxed text-white/75">
+              Professioneller Garten- und Landschaftsbau in Rendsburg und
+              Umgebung.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="mb-4 text-lg font-semibold">Schnellzugriff</h4>
+            <ul className="space-y-2">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-white/75 transition-colors hover:text-white"
                   >
-                    <span className="font-semibold text-sm">{social.initial}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-            
-            {/* Quick Links */}
-            <div>
-              <h4 className="font-bold text-lg mb-4">Schnellzugriff</h4>
-              <ul className="space-y-3">
-                {quickLinks.map((link, index) => (
-                  <li key={index}>
-                    <Link 
-                      href={link.href} 
-                      className="text-white/70 hover:text-white transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            {/* Services */}
-            <div>
-              <h4 className="font-bold text-lg mb-4">Unsere Leistungen</h4>
-              <ul className="space-y-3">
-                {services.map((service, index) => (
-                  <li key={index}>
-                    <Link 
-                      href={service.href} 
-                      className="text-white/70 hover:text-white transition-colors"
-                    >
-                      {service.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            {/* Contact Info */}
-            <div>
-              <h4 className="font-bold text-lg mb-4">Kontakt</h4>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-green-light flex-shrink-0 mt-0.5" />
-                  <span className="text-white/70">Graf-Zeppelin Str.11, 24768 Rendsburg</span>
+                    {link.name}
+                  </Link>
                 </li>
-                <li className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-green-light flex-shrink-0" />
-                  <a href="tel:015225972872" className="text-white/70 hover:text-white transition-colors">
-                    01522 5972872
-                  </a>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-green-light flex-shrink-0" />
-                  <span className="text-white/70">blerim-geci@hotmail.com</span>
-                </li>
-              </ul>
-            </div>
+              ))}
+            </ul>
           </div>
-          
-          {/* Copyright */}
-          <div className="border-t border-white/10 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/60 text-sm">
-              <p>&copy; {new Date().getFullYear()} BCHMS Rendsburg UG. Alle Rechte vorbehalten.</p>
-              <div className="flex gap-6">
-                <Link href="#" className="hover:text-white transition-colors">Datenschutz</Link>
-                <Link href="#" className="hover:text-white transition-colors">AGB</Link>
-              </div>
-            </div>
+
+          <div>
+            <h4 className="mb-4 text-lg font-semibold">Kontakt</h4>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-3">
+                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-green-light" />
+                <span className="text-white/75">
+                  Graf-Zeppelin Str. 11, 24768 Rendsburg, Deutschland
+                </span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone className="h-5 w-5 shrink-0 text-green-light" />
+                <a
+                  href="tel:015225972872"
+                  className="text-white/75 transition-colors hover:text-white"
+                >
+                  01522 5972872
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail className="h-5 w-5 shrink-0 text-green-light" />
+                <span className="text-white/75">blerim-geci@hotmail.com</span>
+              </li>
+            </ul>
           </div>
+        </div>
+
+        <div className="border-t border-white/10 pt-6">
+          <p className="text-sm text-white/70">© 2026 Blerim Geci</p>
+
+          <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-white/80">
+            {legalLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="transition-colors hover:text-white"
+              >
+                {link.name}
+              </Link>
+            ))}
+            <button
+              type="button"
+              onClick={openPreferences}
+              className="cursor-pointer bg-transparent p-0 text-left transition-colors hover:text-white"
+            >
+              Cookie-Einstellungen
+            </button>
+          </div>
+
+          <p className="mt-4 text-sm text-white/75">Powered by Clearline Tech</p>
         </div>
       </div>
     </footer>
