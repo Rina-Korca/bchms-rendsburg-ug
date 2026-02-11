@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { generateClient } from "aws-amplify/data"
 import type { Schema } from "@/amplify/data/resource"
 import { Button } from "@/components/ui/button"
@@ -22,7 +22,8 @@ export function ContactFormSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
-  const [formLoadTime] = useState(Date.now())
+  const [formLoadTimeMs] = useState(Date.now())
+  const [formStartedAtEpochSeconds] = useState(() => Math.floor(Date.now() / 1000))
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -35,7 +36,7 @@ export function ContactFormSection() {
     }
 
     // Spam protection: minimum time check (3 seconds)
-    const timeSinceLoad = Date.now() - formLoadTime
+    const timeSinceLoad = Date.now() - formLoadTimeMs
     if (timeSinceLoad < 3000) {
       setStatus("error")
       setErrorMessage("Bitte warten Sie einen Moment, bevor Sie das Formular absenden.")
@@ -62,17 +63,23 @@ export function ContactFormSection() {
     setErrorMessage(null)
 
     try {
-      // Get user agent and IP (IP will be null from browser, but we can get user agent)
-      const userAgent = navigator.userAgent
-
-      await client.models.ContactMessage.create({
+      const combinedMessage = `Betreff: ${formData.subject.trim()}\n\n${formData.message.trim()}`
+      const { data, errors } = await client.mutations.submitContact({
         name: formData.name.trim(),
         email: formData.email.trim(),
-        subject: formData.subject.trim(),
-        message: formData.message.trim(),
-        userAgent,
-        status: "NEW",
+        message: combinedMessage,
+        honeypot: formData.honeypot,
+        formStartedAt: formStartedAtEpochSeconds,
       })
+
+      if (errors?.length) {
+        const reasons = errors.map((error) => error.message).join("; ")
+        throw new Error(reasons || "API request failed")
+      }
+
+      if (!data?.success) {
+        throw new Error(data?.message ?? "Form submission failed")
+      }
 
       setFormData({
         name: "",

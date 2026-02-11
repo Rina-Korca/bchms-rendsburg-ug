@@ -1,0 +1,13 @@
+{
+  "name": "submit-contact",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@aws-amplify/backend-function": "^1.16.0",
+    "@aws-sdk/client-ses": "^3.985.0",
+    "aws-amplify": "^6.15.5"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.160"
+  }
+}

@@ -82,5 +82,11 @@ type LambdaProvidedEnvVars = {
 
 /** Amplify backend environment variables available at runtime, this includes environment variables defined in `defineFunction` and by cross resource mechanisms */
 type AmplifyBackendEnvVars = {
-  FROM_EMAIL: string;
+  SES_FROM: string;
+  SES_TO: string;
+  MIN_SUBMIT_AGE_MS: string;
+  AMPLIFY_DATA_GRAPHQL_ENDPOINT: string;
+  AMPLIFY_DATA_MODEL_INTROSPECTION_SCHEMA_BUCKET_NAME: string;
+  AMPLIFY_DATA_MODEL_INTROSPECTION_SCHEMA_KEY: string;
+  AMPLIFY_DATA_DEFAULT_NAME: string;
 };
