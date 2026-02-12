@@ -7,7 +7,7 @@ backend:
         - corepack enable
         - corepack prepare pnpm@10.14.0 --activate
         - pnpm config set ignore-scripts false
-        - pnpm install --frozen-lockfile
+        - pnpm install --no-frozen-lockfile
     build:
       commands:
         - export AWS_REGION=eu-central-1
@@ -23,7 +23,7 @@ frontend:
         - corepack enable
         - corepack prepare pnpm@10.14.0 --activate
         - pnpm config set ignore-scripts false
-        - pnpm install --frozen-lockfile
+        - pnpm install --no-frozen-lockfile
     build:
       commands:
         - export NODE_OPTIONS="--max-old-space-size=6144"
