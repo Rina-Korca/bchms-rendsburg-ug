@@ -1,5 +1,5 @@
 import { getAmplifyDataClientConfig, type DataClientEnv } from "@aws-amplify/backend-function/runtime"
-import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses"
+import { SESClient, SendEmailCommand, type SendEmailCommandInput } from "@aws-sdk/client-ses"
 import { Amplify } from "aws-amplify"
 import { generateClient } from "aws-amplify/data"
 import type { Schema } from "../../data/resource"
@@ -9,6 +9,7 @@ const MAX_FORM_AGE_MS = 1000 * 60 * 60 * 24
 type RuntimeEnv = DataClientEnv & {
   SES_FROM: string
   SES_TO: string
+  SES_ENABLE_REPLY_TO?: string
   MIN_SUBMIT_AGE_MS?: string
 }
 
@@ -59,6 +60,8 @@ const escapeHtml = (value: string) =>
     .replaceAll("'", "&#39;")
 
 const nl2br = (value: string) => escapeHtml(value).replaceAll("\n", "<br />")
+const parseRecipientList = (value: string) =>
+  [...new Set(value.split(/[,\s;]+/).map((entry) => entry.trim()).filter((entry) => entry.length > 0))]
 
 const renderEmailShell = ({
   preheader,
@@ -278,30 +281,51 @@ export const handler: Schema["submitContact"]["functionHandler"] = async (event,
       return failResponse(requestId, "Es gab ein Problem beim Speichern Ihrer Anfrage.")
     }
 
+    const internalRecipients = parseRecipientList(runtimeEnv.SES_TO ?? "")
+    if (internalRecipients.length === 0) {
+      console.error(JSON.stringify({ requestId, stage: "config", error: "Missing SES_TO recipients" }))
+      return failResponse(requestId, "Es gab ein Problem beim Senden. Bitte versuchen Sie es erneut.")
+    }
+
+    const invalidInternalRecipients = internalRecipients.filter(
+      (recipient) => !EMAIL_REGEX.test(recipient) || recipient.length > 254,
+    )
+    if (invalidInternalRecipients.length > 0) {
+      console.error(
+        JSON.stringify({
+          requestId,
+          stage: "config",
+          error: "Invalid SES_TO recipients",
+          invalidInternalRecipients,
+        }),
+      )
+      return failResponse(requestId, "Es gab ein Problem beim Senden. Bitte versuchen Sie es erneut.")
+    }
+
     const internalEmailText = buildInternalEmailText({ name, email, message })
     const internalEmailHtml = buildInternalEmailHtml({ name, email, message })
-    const internalSesResult = await sesClient.send(
-      new SendEmailCommand({
-        Source: runtimeEnv.SES_FROM,
-        Destination: {
-          ToAddresses: [runtimeEnv.SES_TO],
+    const enableReplyTo = runtimeEnv.SES_ENABLE_REPLY_TO === "true"
+    const internalEmailInput: SendEmailCommandInput = {
+      Source: runtimeEnv.SES_FROM,
+      Destination: {
+        ToAddresses: internalRecipients,
+      },
+      Message: {
+        Subject: {
+          Data: "Neue Kontaktanfrage — BCHMS Rendsburg UG",
         },
-        ReplyToAddresses: [email],
-        Message: {
-          Subject: {
-            Data: "Neue Kontaktanfrage — BCHMS Rendsburg UG",
+        Body: {
+          Text: {
+            Data: internalEmailText,
           },
-          Body: {
-            Text: {
-              Data: internalEmailText,
-            },
-            Html: {
-              Data: internalEmailHtml,
-            },
+          Html: {
+            Data: internalEmailHtml,
           },
         },
-      }),
-    )
+      },
+      ...(enableReplyTo ? { ReplyToAddresses: [email] } : {}),
+    }
+    const internalSesResult = await sesClient.send(new SendEmailCommand(internalEmailInput))
 
     const confirmationEmailText = buildConfirmationEmailText({ name, message })
     const confirmationEmailHtml = buildConfirmationEmailHtml({ name, message })
@@ -331,6 +355,8 @@ export const handler: Schema["submitContact"]["functionHandler"] = async (event,
       JSON.stringify({
         requestId,
         stage: "send_email",
+        internalRecipients,
+        replyToEnabled: enableReplyTo,
         internalMessageId: internalSesResult.MessageId ?? null,
         confirmationMessageId: confirmationSesResult.MessageId ?? null,
       }),

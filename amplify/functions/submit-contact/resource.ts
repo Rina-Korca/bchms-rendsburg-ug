@@ -8,6 +8,7 @@ export const submitContact = defineFunction({
   environment: {
     SES_FROM: "no-reply@bchms-rendsburg-ug.de",
     SES_TO: "bchms.rendsburg@gmail.com",
+    SES_ENABLE_REPLY_TO: "false",
     MIN_SUBMIT_AGE_MS: "3000",
   },
 })
