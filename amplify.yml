@@ -10,6 +10,7 @@ backend:
         - pnpm install --no-frozen-lockfile
     build:
       commands:
+        - export NODE_OPTIONS="--max-old-space-size=4096"
         - export AWS_REGION=eu-central-1
         - export AWS_DEFAULT_REGION=eu-central-1
         - export CDK_DEFAULT_REGION=eu-central-1
@@ -26,8 +27,9 @@ frontend:
         - pnpm install --no-frozen-lockfile
     build:
       commands:
-        - export NODE_OPTIONS="--max-old-space-size=6144"
-        - pnpm run build
+        - export NODE_OPTIONS="--max-old-space-size=4096"
+        - export NEXT_TELEMETRY_DISABLED=1
+        - pnpm exec next build --webpack
 
   artifacts:
     baseDirectory: .next
