@@ -73,6 +73,7 @@
     "@aws-amplify/backend": "^1.16.0",
     "@aws-amplify/backend-cli": "^1.8.2",
     "@aws-amplify/backend-function": "^1.16.0",
+    "@aws-amplify/cli": "14.2.5",
     "@tailwindcss/postcss": "^4.1.9",
     "@types/aws-lambda": "^8.10.160",
     "@types/node": "^22",

@@ -1,0 +1,41 @@
+version: 1
+
+backend:
+  phases:
+    preBuild:
+      commands:
+        - corepack enable
+        - corepack prepare pnpm@10.14.0 --activate
+        - pnpm config set ignore-scripts false
+        - pnpm install --frozen-lockfile
+    build:
+      commands:
+        - export AWS_REGION=eu-central-1
+        - export AWS_DEFAULT_REGION=eu-central-1
+        - export CDK_DEFAULT_REGION=eu-central-1
+        - export CDK_DEFAULT_ACCOUNT=219895243098
+        - pnpm exec ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
+
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - corepack enable
+        - corepack prepare pnpm@10.14.0 --activate
+        - pnpm config set ignore-scripts false
+        - pnpm install --frozen-lockfile
+    build:
+      commands:
+        - export NODE_OPTIONS="--max-old-space-size=6144"
+        - pnpm run build
+
+  artifacts:
+    baseDirectory: .next
+    files:
+      - "**/*"
+
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*
+      - ~/.pnpm-store/**/*
