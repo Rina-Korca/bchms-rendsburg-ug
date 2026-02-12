@@ -7,10 +7,12 @@ backend:
         - corepack enable
         - corepack prepare pnpm@10.14.0 --activate
         - pnpm config set ignore-scripts false
-        - pnpm install --no-frozen-lockfile
+        - pnpm config set child-concurrency 2
+        - pnpm config set network-concurrency 8
+        - pnpm install --no-frozen-lockfile --prefer-offline
     build:
       commands:
-        - export NODE_OPTIONS="--max-old-space-size=4096"
+        - export NODE_OPTIONS="--max-old-space-size=3072"
         - export AWS_REGION=eu-central-1
         - export AWS_DEFAULT_REGION=eu-central-1
         - export CDK_DEFAULT_REGION=eu-central-1
@@ -23,11 +25,10 @@ frontend:
       commands:
         - corepack enable
         - corepack prepare pnpm@10.14.0 --activate
-        - pnpm config set ignore-scripts false
-        - pnpm install --no-frozen-lockfile
+        - if [ ! -d node_modules ]; then pnpm install --no-frozen-lockfile --prefer-offline; fi
     build:
       commands:
-        - export NODE_OPTIONS="--max-old-space-size=4096"
+        - export NODE_OPTIONS="--max-old-space-size=3072"
         - export NEXT_TELEMETRY_DISABLED=1
         - pnpm exec next build --webpack
 
@@ -35,9 +36,3 @@ frontend:
     baseDirectory: .next
     files:
       - "**/*"
-
-  cache:
-    paths:
-      - node_modules/**/*
-      - .next/cache/**/*
-      - ~/.pnpm-store/**/*
